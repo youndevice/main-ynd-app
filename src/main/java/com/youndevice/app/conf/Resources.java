@@ -1,8 +1,8 @@
 package com.youndevice.app.conf;
 
-import com.youndevice.bootstrap.ApplicationReadyEventHandlerService;
-import com.youndevice.services.repoServices.RepoServiceMarker;
-import com.youndevice.util.Holders;
+import com.youndevice.app.bootstrap.ApplicationReadyEventHandlerService;
+import com.youndevice.app.service.repo.RepoServiceMarker;
+import com.youndevice.app.util.Holders;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

@@ -1,5 +1,7 @@
 package com.youndevice.app.domain;
 
+import com.youndevice.app.enums.DeviceType;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,7 +14,8 @@ public class Device extends BaseEntity {
 
     private Boolean enabled = Boolean.FALSE;
 
-    private String deviceType;
+    @Enumerated(EnumType.ORDINAL)
+    private DeviceType deviceType;
 
     private String userFriendlyName;
 
@@ -41,11 +44,11 @@ public class Device extends BaseEntity {
         this.enabled = enabled;
     }
 
-    public String getDeviceType() {
+    public DeviceType getDeviceType() {
         return deviceType;
     }
 
-    public void setDeviceType(String deviceType) {
+    public void setDeviceType(DeviceType deviceType) {
         this.deviceType = deviceType;
     }
 

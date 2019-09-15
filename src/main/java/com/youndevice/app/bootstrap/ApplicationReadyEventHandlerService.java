@@ -4,6 +4,7 @@ import com.youndevice.app.domain.Appliance;
 import com.youndevice.app.domain.Device;
 import com.youndevice.app.domain.Role;
 import com.youndevice.app.domain.User;
+import com.youndevice.app.enums.DeviceType;
 import com.youndevice.app.enums.RoleType;
 import com.youndevice.app.service.repo.RoleRepoService;
 import com.youndevice.app.service.repo.UserRepoService;
@@ -80,7 +81,7 @@ public class ApplicationReadyEventHandlerService implements ApplicationListener<
         Set<Device> devices = new HashSet<>(noOfDevices);
         for (Integer count = 0; count < noOfDevices; count++) {
             Device device = new Device();
-            device.setDeviceType("Sample Type- " + count);
+            device.setDeviceType(DeviceType.TYPE_1);
             device.setUserFriendlyName("User Friendly name for Device");
             device.setAppliances(createTestAppliances(count, device));
             device.setUser(user);

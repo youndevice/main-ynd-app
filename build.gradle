@@ -29,3 +29,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 }
+
+bootRun {
+	sourceResources sourceSets.main
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Page</title>
+    <div th:replace="~{fragment/layout.html :: header-css}"></div>
+    <div th:replace="~{fragment/layout.html :: header-js}"></div>
+</head>
+
+<body>
+<div th:replace="~{fragment/layout.html :: header}"></div>
+Device
+<a href="/device/create" type="button" class="btn btn-primary">Create Device</a>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">User Friendly Name</th>
+        <th scope="col">TYPE</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="device: ${deviceList}">
+        <td th:text="${device.id}"/>
+        <td th:text="${device.userFriendlyName}"/>
+        <td th:text="${device.deviceType}"/>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

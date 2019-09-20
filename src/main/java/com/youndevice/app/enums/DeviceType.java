@@ -10,9 +10,9 @@ public enum DeviceType {
     TYPE_5("Type 5"),
     TYPE_6("Type 6");
 
-    private String name;
+    final String name;
 
-    private DeviceType(String value) {
+    DeviceType(String value) {
         this.name = value;
     }
 }

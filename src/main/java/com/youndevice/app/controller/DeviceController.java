@@ -2,16 +2,23 @@ package com.youndevice.app.controller;
 
 import com.youndevice.app.domain.Device;
 import com.youndevice.app.dto.DeviceDTO;
+import com.youndevice.app.enums.DeviceType;
 import com.youndevice.app.repository.DeviceRepository;
 import com.youndevice.app.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.text.ParseException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,8 +45,29 @@ public class DeviceController {
                 .collect(Collectors.toList());
         Map responseMap = new HashMap();
         responseMap.put("deviceList", deviceDTOList);
-        ModelAndView modelAndView = new ModelAndView("deviceListing", responseMap);
+        ModelAndView modelAndView = new ModelAndView("device/list", responseMap);
         return modelAndView;
+    }
+
+    @GetMapping("/device/create")
+    public String createDevice(Model model) {
+        List deviceTypeList = Arrays.asList(DeviceType.values());
+        model.addAttribute("deviceTypeList", deviceTypeList);
+        return "device/create";
+    }
+
+    @PostMapping("/device/save")
+    public String saveDevice(@Valid Device device, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "device/create";
+        }
+        deviceRepository.save(device);
+        List<Device> deviceList = deviceRepository.findAll();
+        List<DeviceDTO> deviceDTOList = deviceList.stream()
+                .map(device1 -> convertToDto(device1))
+                .collect(Collectors.toList());
+        model.addAttribute("deviceList", deviceDTOList);
+        return "device/list";
     }
 
     private DeviceDTO convertToDto(Device device) {

@@ -1,7 +1,6 @@
 package com.youndevice.app.controller;
 
 import com.youndevice.app.domain.Device;
-import com.youndevice.app.domain.User;
 import com.youndevice.app.dto.DeviceDTO;
 import com.youndevice.app.enums.DeviceType;
 import com.youndevice.app.repository.DeviceRepository;
@@ -72,26 +71,28 @@ public class DeviceController {
         List deviceTypeList = Arrays.asList(DeviceType.values());
         model.addAttribute("deviceTypeList", deviceTypeList);
         model.addAttribute("device", device);
-        return "device/create";
+        return "device/edit";
     }
 
     @PostMapping("/device/update/{id}")
-    public String updateUser(@PathVariable("id") long id, @Valid Device device,
-                             BindingResult result, Model model) {
+    public String updateDevice(@PathVariable("id") long id, @Valid Device device,
+                               BindingResult result, Model model) {
         if (result.hasErrors()) {
             device.setId(id);
             return "device/create";
         }
-//        Device deviceInstance = deviceRepository.findById(id)
-//                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-        deviceRepository.save(device);
+        Device deviceInstance = deviceRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid device Id:" + id));
+        deviceInstance.setUserFriendlyName(device.getUserFriendlyName());
+        deviceInstance.setDeviceType(device.getDeviceType());
+        deviceRepository.save(deviceInstance);
         return "redirect:/device/list";
     }
 
-    @GetMapping("/delete/{id}")
-    public String deleteUser(@PathVariable("id") long id, Model model) {
+    @GetMapping("/device/delete/{id}")
+    public String deleteDevice(@PathVariable("id") long id, Model model) {
         Device device = deviceRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+                .orElseThrow(() -> new IllegalArgumentException("Invalid device Id:" + id));
         deviceRepository.delete(device);
         return "redirect:/device/list";
     }

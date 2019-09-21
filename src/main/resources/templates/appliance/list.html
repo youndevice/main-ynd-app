@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Page</title>
+    <div th:replace="~{fragment/layout.html :: header-css}"></div>
+    <div th:replace="~{fragment/layout.html :: header-js}"></div>
+</head>
+
+<body>
+<div th:replace="~{fragment/layout.html :: header}"></div>
+Device
+<a th:href="@{/appliance/create}" type="button" class="btn btn-primary">Create Appliance</a>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">User Friendly Name</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="appliance: ${applianceList}">
+        <td th:text="${appliance.id}"/>
+        <td th:text="${appliance.userFriendlyName}"/>
+        <td>
+            <a th:href="@{/appliance/edit/{id}(id=${appliance.id})}"><i class="fas fa-edit"></i></a>
+            <a th:href="@{/appliance/delete/{id}(id=${appliance.id})}"><i class="fas fa-trash-alt"></i></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

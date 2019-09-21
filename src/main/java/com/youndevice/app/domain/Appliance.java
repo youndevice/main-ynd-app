@@ -12,11 +12,10 @@ public class Appliance extends BaseEntity {
 
     private String actualDeviceStatus;
 
-
     private String userFriendlyName;
 
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
-    @JoinColumn(name = "device_id", nullable = false)
+    @ManyToOne(cascade = CascadeType.ALL, optional = true)
+    @JoinColumn(name = "device_id", nullable = true)
     private Device device;
 
     public Long getId() {

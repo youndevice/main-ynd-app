@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Admin Page</title>
+    <div th:replace="~{fragment/layout.html :: header-css}"></div>
+    <div th:replace="~{fragment/layout.html :: header-js}"></div>
+</head>
+
+<body>
+<div th:replace="~{fragment/layout.html :: header}"></div>
+<form class="form-horizontal" action="#" th:action="@{/appliance/update/{id}(id=${appliance.id})}" method="post">
+    <fieldset>
+
+        <!-- Form Name -->
+        <legend>Create Device</legend>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="userFriendlyName">User Friendly Name</label>
+            <div class="col-md-4">
+                <input id="userFriendlyName" th:value="${appliance.userFriendlyName}" name="userFriendlyName"
+                       type="text"
+                       placeholder="placeholder"
+                       class="form-control input-md">
+
+            </div>
+        </div>
+
+        <!-- Button (Double) -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="button1id"></label>
+            <div class="col-md-8">
+                <button id="button1id" name="button1id" type="submit" class="btn btn-success">Submit</button>
+                <button id="button2id" name="button2id" class="btn btn-danger">Cancel</button>
+            </div>
+        </div>
+
+    </fieldset>
+</form>
+
+</body>
+</html>

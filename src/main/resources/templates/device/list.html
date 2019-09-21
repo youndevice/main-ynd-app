@@ -16,6 +16,7 @@ Device
         <th scope="col">ID</th>
         <th scope="col">User Friendly Name</th>
         <th scope="col">TYPE</th>
+        <th scope="col">Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -23,6 +24,10 @@ Device
         <td th:text="${device.id}"/>
         <td th:text="${device.userFriendlyName}"/>
         <td th:text="${device.deviceType}"/>
+        <td>
+            <a th:href="@{/device/edit/{id}(id=${device.id})}"><i class="fas fa-edit"></i></a>
+            <a th:href="@{/device/delete}"><i class="fas fa-trash-alt"></i></a>
+        </td>
     </tr>
     </tbody>
 </table>

@@ -10,9 +10,14 @@ public enum DeviceType {
     TYPE_5("Type 5"),
     TYPE_6("Type 6");
 
-    final String name;
+    final String value;
 
     DeviceType(String value) {
-        this.name = value;
+        this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return this.name();
     }
 }

@@ -9,7 +9,7 @@
 
 <body>
 <div th:replace="~{fragment/layout.html :: header}"></div>
-<form class="form-horizontal">
+<form class="form-horizontal" action="#" th:action="@{/device/save}" method="post">
     <fieldset>
 
         <!-- Form Name -->
@@ -25,27 +25,19 @@
             </div>
         </div>
 
-        <select id="segmentoSel" class="form-control">
-            <option value="" selected="selected">-Select Device Type</option>
-            <option th:each="deviceType : ${deviceTypeList}" th:value="${name}" th:text="${name}">ABBC</option>
-        </select>
-
-        <!-- Select Basic -->
         <div class="form-group">
-            <label class="col-md-4 control-label" for="selectbasic">Device Type</label>
-            <div class="col-md-4">
-                <select id="selectbasic" name="selectbasic" class="form-control">
-                    <option value="1">Option one</option>
-                    <option value="2">Option two</option>
-                </select>
-            </div>
+            <label class="col-md-4 control-label" for="deviceType">Device Type</label>
+            <select id="deviceType" name="deviceType" class="col-md-4 form-control">
+                <option value="" selected="selected">-Select Device Type
+                <option th:each="deviceType : ${deviceTypeList}" th:value="${deviceType}" th:text="${deviceType}"></option>
+            </select>
         </div>
 
         <!-- Button (Double) -->
         <div class="form-group">
             <label class="col-md-4 control-label" for="button1id"></label>
             <div class="col-md-8">
-                <button id="button1id" name="button1id" class="btn btn-success">Submit</button>
+                <button id="button1id" name="button1id" type="submit" class="btn btn-success">Submit</button>
                 <button id="button2id" name="button2id" class="btn btn-danger">Cancel</button>
             </div>
         </div>

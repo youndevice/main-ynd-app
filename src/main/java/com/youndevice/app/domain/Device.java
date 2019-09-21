@@ -14,7 +14,7 @@ public class Device extends BaseEntity {
 
     private Boolean enabled = Boolean.FALSE;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private DeviceType deviceType;
 
     private String userFriendlyName;
@@ -22,7 +22,7 @@ public class Device extends BaseEntity {
     private String status;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = true)
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "device", orphanRemoval = true)

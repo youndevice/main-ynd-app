@@ -2,13 +2,11 @@ package com.youndevice.app.rest.conf;
 
 import com.youndevice.app.conf.ConfigMarker;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-@Configuration
-@EnableWebMvc
+//@Configuration
+//@EnableWebMvc
 @ComponentScan(basePackageClasses = {ConfigMarker.class})
 public class WebConfig extends WebMvcConfigurerAdapter {
 
